@@ -12,3 +12,10 @@ This Pass is added using the new Pass Manager
 4. Add "#include "llvm/Transforms/Utils/MyFirstPass.h"" in "llvm/lib/Passes/PassBuilder.cpp"
 5. move to build folder and build the llvm again (make)
 6. How to use the added pass "build/bin/opt -disable-output ~/AMAR/c/risc_v_programs/prog9.ll -passes=helloworld"
+
+## PrintBBname - It uses old Pass Manager to print basic blocks name
+This Pass is added using the old Pass Manager
+1. Copy the PrintBBname folder inside "llvm-project/llvm/lib/Transforms/" also add "add_subdirectory(PrintBBname)" inside "llvm-project/llvm/lib/    Transforms/CMakeLists.txt"
+2. make or build the LLVM again. It should create a "LLVMPrintBBname.so" inside "build/lib/"
+3. To load the shared object and execute: /home/amar/AMAR/LLVM/llvm-project/build/bin/opt -load /home/amar/AMAR/LLVM/llvm-project/build/lib/LLVMPrintBBname.so -print_bb_name -enable-new-pm=0 < LLVM_IR.ll > /dev/null
+

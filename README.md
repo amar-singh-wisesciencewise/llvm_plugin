@@ -19,3 +19,21 @@ This Pass is added using the old Pass Manager
 2. make or build the LLVM again. It should create a "LLVMPrintBBname.so" inside "build/lib/"
 3. To load the shared object and execute: /home/amar/AMAR/LLVM/llvm-project/build/bin/opt -load /home/amar/AMAR/LLVM/llvm-project/build/lib/LLVMPrintBBname.so -print_bb_name -enable-new-pm=0 < LLVM_IR.ll > /dev/null
 
+## Pass_using_tool - It is out-of-tree plugin code.
+This plugin code also generate an executable apart from generating loadable ".so" file.
+
+This plugin is out-of-tree implemetation of Constant Propogation. Out-of-tree means code does not need to been inside llvm-project and just needs the path to llvm build folder.
+
+This is a copied and fixed version of "https://github.com/lac-dcc/llvm-course/tree/master/llvm-passes"
+
+Below steps can be followed to create the executable and run the executable. Please also read README inside the folder.
+1. "mkdir build"
+2. "LLVM_INSTALL_DIR=/home/amar/AMAR/LLVM/llvm-project/build"
+3. "LLVM_OPT=$LLVM_INSTALL_DIR/bin/opt"
+4. "cmake -DLLVM_INSTALL_DIR=$LLVM_INSTALL_DIR -G "Unix Makefiles" -B build/ ."
+5. "cd build/"
+6. "make"
+7. "cd bin"
+8. "./addconst ../../examples/foo.ll" 
+9. "cat out.ll"
+
